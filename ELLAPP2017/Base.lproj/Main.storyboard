@@ -50,7 +50,7 @@
                                 <rect key="frame" x="169" y="273" width="430" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="34"/>
-                                <state key="normal" title="Manage Classroom" backgroundImage="blue.png">
+                                <state key="normal" title="Manage Classroom" backgroundImage="blue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -62,7 +62,7 @@
                                 <rect key="frame" x="169" y="491" width="430" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="34"/>
-                                <state key="normal" title="View Local Library" backgroundImage="lightturq.png">
+                                <state key="normal" title="View Local Library" backgroundImage="lightturq">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -80,7 +80,7 @@
                                 <rect key="frame" x="169" y="709" width="430" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="34"/>
-                                <state key="normal" title="View Global Library" backgroundImage="darkblue.png">
+                                <state key="normal" title="View Global Library" backgroundImage="darkblue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -330,7 +330,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ZN-SD-mOs">
                                 <rect key="frame" x="320" y="555" width="195" height="139"/>
                                 <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="29"/>
-                                <state key="normal" title="Submit" backgroundImage="lightturq.png">
+                                <state key="normal" title="Submit" backgroundImage="lightturq">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -395,7 +395,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goodnight.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="B63-Tg-xlG">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goodnight" translatesAutoresizingMaskIntoConstraints="NO" id="B63-Tg-xlG">
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="400"/>
                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.83921568629999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
@@ -438,9 +438,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="blue.png" width="2100" height="1500"/>
-        <image name="darkblue.png" width="2100" height="1500"/>
-        <image name="goodnight.jpg" width="500" height="424"/>
-        <image name="lightturq.png" width="2100" height="1500"/>
+        <image name="blue" width="2100" height="1500"/>
+        <image name="darkblue" width="2100" height="1500"/>
+        <image name="goodnight" width="500" height="424"/>
+        <image name="lightturq" width="2100" height="1500"/>
     </resources>
 </document>
