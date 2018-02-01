@@ -1,0 +1,11 @@
+.DS_Store
+build
+*.xcworkspace/*
+*.xcuserstate
+ELLAPP2017.xcworkspace/
+ELLAPP2017.xcodeproj/
+Pods/Pds.xcodeproj/
+xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata
