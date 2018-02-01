@@ -27,7 +27,9 @@ class LoginTest: XCTestCase {
         
         // obtain the app variables for test access
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        vc = storyboard.instantiateInitialViewController() as! LoginViewController
+        vc = storyboard.instantiateViewController(withIdentifier: "vc_login") as! LoginViewController
+        // That was no longer the initial view controller - NAP
+        // vc = storyboard.instantiateInitialViewController() as! LoginViewController
     }
     
     override func tearDown() {

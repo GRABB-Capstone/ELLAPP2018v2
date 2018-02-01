@@ -48,10 +48,11 @@ class BooksViewController: UIViewController {
                     // query the books from only the signed in user
                     let title = object["name"] as! String
                     let cover = object["coverPicture"] as! PFFile
+                    let vocab = object["vocab"] as! [String]
                     
                     cover.getDataInBackground({ (data, error) -> Void in
                         if let coverImage = UIImage(data: data!) {
-                            self.books.append(Book(title: title, bookImage: coverImage))
+                            self.books.append(Book(title: title, bookImage: coverImage, vocab: vocab))
                             self.booksCollectionView.reloadData()
                         }
                         else {
@@ -92,8 +93,8 @@ class BooksViewController: UIViewController {
             let selectedIndexPath = self.booksCollectionView.indexPathsForSelectedItems![0]
             
             print("Selected item number: \(selectedIndexPath.item) and book count: \(self.books.count)")
-            print("Title of chosen book")
-            destVC?.words.append(self.books[selectedIndexPath.item].title)
+//            destVC?.words.append(self.books[selectedIndexPath.item].title)
+            destVC?.words = self.books[selectedIndexPath.item].vocabWords
         }
     }
     

@@ -10,6 +10,8 @@ import UIKit
 
 class GlobalLibraryViewController: UIViewController {
 
+    @IBOutlet weak var globalLibraryTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
