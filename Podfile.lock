@@ -1,15 +1,18 @@
 PODS:
   - Bolts/Tasks (1.8.4)
+  - HydraAsync (1.2.1)
   - Parse (1.15.3):
     - Bolts/Tasks (~> 1.8)
 
 DEPENDENCIES:
+  - HydraAsync
   - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
   Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
 
-PODFILE CHECKSUM: a9f0d18f6fe38ef0eab93a64e77ab6210b5da131
+PODFILE CHECKSUM: b9a48a47abe8a1519fbacf2934209749538a57a1
 
 COCOAPODS: 1.4.0

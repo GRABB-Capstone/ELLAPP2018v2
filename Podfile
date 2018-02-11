@@ -8,6 +8,7 @@ target 'ELLAPP2017' do
   # Pods for ELLAPP2017
   pod 'Parse'
   #pod 'ParseLiveQuery'
+  pod 'HydraAsync'
 
   target 'ELLAPP2017Tests' do
     inherit! :search_paths
