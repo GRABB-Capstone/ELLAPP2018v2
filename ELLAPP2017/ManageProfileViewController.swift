@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import Parse
 
 class ManageProfileViewController: UIViewController {
 
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var oldpasswordTextField: UITextField!
-    @IBOutlet weak var newpasswordTextField: UITextField!
-    @IBOutlet weak var confirmpasswordTextField: UITextField!
+    var currentUser = PFUser.current()
+    @IBOutlet weak var userImage: UIImageView!
+    
+    
+    @IBOutlet weak var userNameField: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        userNameField.text = currentUser!.username
+        userImage.layer.cornerRadius = userImage.frame.size.width / 2
+        userImage.clipsToBounds = true
+        userImage.layer.borderWidth = 3
+        userImage.layer.borderColor = UIColor.white.cgColor
         // Do any additional setup after loading the view.
     }
 
