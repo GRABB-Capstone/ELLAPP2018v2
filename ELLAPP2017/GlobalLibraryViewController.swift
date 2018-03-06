@@ -23,15 +23,16 @@ class GlobalLibraryViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Get all book objects and extract their data into arrays
-        getAllBooks() {
-            (books: [PFObject]) in
+        UseDatabase().getGlobalBooks().then{ books in
             for book in books {
                 self.titles.append(book["name"] as! String)
                 self.authors.append(book["author"] as! String)
                 self.coverPictures.append(book["coverPicture"] as! PFFile)
-                
-                self.globalLibraryTableView.reloadData()
+//                self.globalLibraryTableView.reloadData()
             }
+            self.globalLibraryTableView.reloadData()
+        }.catch { error in
+            // Error handling
         }
     }
 
@@ -40,22 +41,6 @@ class GlobalLibraryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Support functions -> To be replaced by modular functions - NAP
-    
-    func getAllBooks(completion: @escaping (_ result: [PFObject]) -> Void) {
-        // Get the PFQuery<Object> for the Books class
-        let bookQuery = PFQuery(className: "Book")
-        
-        bookQuery.findObjectsInBackground(block: { (books: [PFObject]?, error: Error?) -> Void in
-            if let result = books {
-                completion(result)
-            }
-            else {
-                completion([])
-            }
-        })
-    }
-
     /*
     // MARK: - Navigation
 
