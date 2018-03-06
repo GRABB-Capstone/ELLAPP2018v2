@@ -417,26 +417,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="400"/>
                                                     <color key="backgroundColor" red="0.52156862749999999" green="0.83921568629999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
-                                                <button opaque="NO" alpha="0.02" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-9w-gLB">
-                                                    <rect key="frame" x="77" y="274" width="123" height="126"/>
-                                                    <color key="backgroundColor" red="0.05836648269225559" green="0.053012443627356333" blue="0.98433989286422729" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <state key="normal" title="buttonboi"/>
-                                                    <connections>
-                                                        <action selector="tempCellSelect:" destination="rUL-kP-gq8" eventType="touchUpInside" id="yZJ-Bg-2lK"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.52156862745098043" green="0.83921568627450982" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="bY4-9w-gLB" firstAttribute="leading" secondItem="SS8-sU-vcK" secondAttribute="leading" constant="77" id="28R-zp-Ao5"/>
                                             <constraint firstAttribute="bottom" secondItem="B63-Tg-xlG" secondAttribute="bottom" id="C3P-2c-og3"/>
                                             <constraint firstItem="B63-Tg-xlG" firstAttribute="top" secondItem="SS8-sU-vcK" secondAttribute="top" id="IY6-Jd-Csf"/>
                                             <constraint firstItem="B63-Tg-xlG" firstAttribute="leading" secondItem="SS8-sU-vcK" secondAttribute="leading" id="Nzf-Wc-sup"/>
                                             <constraint firstAttribute="trailing" secondItem="B63-Tg-xlG" secondAttribute="trailing" id="YoS-4w-wWe"/>
-                                            <constraint firstItem="bY4-9w-gLB" firstAttribute="top" secondItem="SS8-sU-vcK" secondAttribute="top" constant="274" id="bsi-wt-CHJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="bY4-9w-gLB" secondAttribute="bottom" id="phZ-lP-zho"/>
-                                            <constraint firstAttribute="trailing" secondItem="bY4-9w-gLB" secondAttribute="trailing" id="xJz-pH-xzw"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="bookImageView" destination="B63-Tg-xlG" id="Rj3-ll-KsJ"/>
