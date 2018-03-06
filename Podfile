@@ -7,6 +7,7 @@ target 'ELLAPP2017' do
 
   # Pods for ELLAPP2017
   pod 'Parse'
+  pod 'Parse/UI'
   #pod 'ParseLiveQuery'
   pod 'HydraAsync'
 
