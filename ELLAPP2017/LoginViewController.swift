@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Hydra
 
 class LoginViewController: UIViewController {
     
@@ -29,41 +30,24 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginbuttonAction(_ sender: UIButton) {
-        
-        // First try to log in to the database
-        login(user: usernameTextField.text!, pass: passwordTextField.text!) {
-            (userObj: PFUser?) in
-            
+        UseDatabase().login(user: usernameTextField.text!, pass: passwordTextField.text!).then{ userObj in
             // If the login was successful, clear the password and navigate to the dashboard
-            if let result = userObj {
-                result.password = ""
-                self.passwordTextField.text = ""
-                
-                self.navigateToDashboard(userObj: result)
-            }
-            // Otherwise, clear the password and print an error message
-            else {
-                // TODO: Consider reimplementing pop-ups for errors and notifications
-                self.loginErrorLabel.text = "Login failed. Try checking your password again"
-                self.passwordTextField.text = ""
-            }
-        }
-    }
-    
-    // Logs in with username and password. Result is a PFUser on success, nil on faiure
-    func login(user: String, pass: String, completion: @escaping (_ result: PFUser?) -> Void) {
-        // Attempt to log in with said PFUser
-        PFUser.logInWithUsername(inBackground: user, password: pass, block: {
-            (PFUser : PFUser?, Error: Error?) -> Void in
+            userObj.password = ""
+            self.passwordTextField.text = ""
             
-            // If the user info is valid and login succeeds
-            if Error == nil {
-                completion(PFUser!)
+            UseDatabase().getClassrooms(user: userObj).then{ classrooms in
+                for classroom in classrooms {
+                    print("asdf")
+                    print(classroom["name"])
+                }
             }
-            else {
-                completion(nil)
-            }
-        })
+            
+            self.navigateToDashboard(userObj: userObj)
+        }.catch { err in
+            // TODO: Consider reimplementing pop-ups for errors and notifications
+            self.loginErrorLabel.text = "Login failed. Try checking your password again"
+            self.passwordTextField.text = ""
+        }
     }
     
     // Navigates to userObj's dashboard
