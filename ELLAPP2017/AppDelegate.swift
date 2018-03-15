@@ -24,12 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Current Database applicationId and clientKey made by the ELLoquent Team
             $0.applicationId = "hm3HmqcHxgfMQxP2SF0Ue0at67HFqqxeYq5ZxKoR"
             $0.clientKey = "6QfVuvEjrAMP5g0dNmhQ8sO0Cu4CS4VtXOe9RMa2"
+            //PFUser.enableRevocableSessionInBackground()
             
             // Old Database applicationId and clientKey made by the GRABB Team
 //            $0.applicationId = "XlZQi8Z0dAIDNWjBmqWmNctcEjVA3NTNSVDF2fin"
 //            $0.clientKey = "ARFYXgM2GLQJmKhqn7WOu7esS1hfXxrI3NfoSq1G"
             $0.server = "https://parseapi.back4app.com"
-            $0.isLocalDatastoreEnabled = true // If you need to enable local data store  
+            $0.isLocalDatastoreEnabled = true // If you need to enable local data store
         }
         Parse.initialize(with: configuration)
         
