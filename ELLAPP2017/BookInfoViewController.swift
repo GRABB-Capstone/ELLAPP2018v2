@@ -7,22 +7,30 @@
 //
 
 import UIKit
+import Parse
 
 class BookInfoViewController: UIViewController {
 
-
+    
+    var Book = PFObject(className: "Book")
+    
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
     @IBOutlet weak var bookLevel: UILabel!
+    var author = String()
+    var grade = String()
     
-    @IBOutlet weak var bookImage: UIImageView!
+    @IBOutlet weak var bookImage: PFImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        author = Book["author"] as! String
+        grade = Book["gradeLevel"] as! String
         
-        //bookTitle.text = //make call for book title
-        //bookAuthor.text = "Author: "//make call for book author
-        //bookLevel.text = "Grade Level: "//make call for book grade level
-        //                  //make call for book image
+        bookTitle.text! = Book["name"] as! String//make call for book title
+        bookAuthor.text = "Author: \(author)"//make call for book author
+        bookLevel.text = "Grade Level: \(grade)"//make call for book grade level
+        bookImage.file = Book["coverPicture"] as! PFFile!//make call for book image
         
         
         
@@ -31,6 +39,7 @@ class BookInfoViewController: UIViewController {
         bookImage.clipsToBounds = true
         bookImage.layer.borderWidth = 3
         bookImage.layer.borderColor = UIColor.white.cgColor
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -52,7 +52,8 @@ class BooksViewController: UIViewController {
                     /* Get what you need from each book */
                     let title = book["name"] as! String
                     let cover = book["coverPicture"] as! PFFile
-                    let vocab = book["vocab"] as! [String]
+                    //let vocab = book["vocab"] as! [String]
+                    let vocab = [String]()
 
                     /* Get the image from the PFFile */
                     cover.getDataInBackground({ (data, error) -> Void in
