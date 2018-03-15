@@ -33,17 +33,8 @@ class LoginViewController: UIViewController {
         Users().login(user: usernameTextField.text!, pass: passwordTextField.text!).then{ userObj in
             // If the login was successful, clear the password and navigate to the dashboard
             self.passwordTextField.text = ""
-
-            print("LOGGED IN")
-            // Upload the new book
-//            UseDatabase().changePassword(oldPassword: "nick", newPassword: "yo", user: PFUser.current()!).then{ result in
-//                self.navigateToDashboard(userObj: userObj)
-//            }
-            Users().createUserWithRole(username: "testUser4", password: "lol", role: "teacher").then { result in
-                print("created new user")
-            }
             
-            //self.navigateToDashboard(userObj: userObj)
+            self.navigateToDashboard(userObj: userObj)
         }.catch { err in
             // TODO: Consider reimplementing pop-ups for errors and notifications
             self.loginErrorLabel.text = "Login failed. Try checking your password again"

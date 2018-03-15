@@ -42,7 +42,7 @@ class Database{
                 
                 // Otherwise, just activate the old one
                 let intermediate = res[0]
-                intermdiate["isActive"] = true
+                intermediate["isActive"] = true
                 
                 self.updateToDatabase(object: intermediate).then { result in
                     resolve(result)
