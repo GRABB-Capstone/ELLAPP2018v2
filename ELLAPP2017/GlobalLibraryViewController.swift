@@ -25,7 +25,7 @@ class GlobalLibraryViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Get all book objects and extract their data into arrays
-        UseDatabase().getGlobalBooks().then{ books in
+        Books().getGlobalBooks().then{ books in
             for book in books {
                 self.titles.append(book["name"] as! String)
                 self.authors.append(book["author"] as! String)

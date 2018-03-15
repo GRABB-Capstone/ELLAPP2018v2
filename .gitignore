@@ -4,7 +4,8 @@ build
 *.xcuserstate
 ELLAPP2017.xcworkspace/
 ELLAPP2017.xcodeproj/
-Pods/Pds.xcodeproj/
+#Pods/Pds.xcodeproj/
+Pods/
 xcuserdata/
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
