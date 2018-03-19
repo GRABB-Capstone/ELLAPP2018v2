@@ -187,10 +187,11 @@ class Books{
         })
     }
     
+    // Uploads a book to the global library
     //
+    // Creates a copy of the book and changes isPublic to true
     //
-    //
-    // Return Value: 
+    // Return Value: The new book object
     func uploadBookToGlobal(book: PFObject) -> Promise<PFObject> {
         return Promise<PFObject>(in: .background, { resolve, reject, _ in
             // Copy the book and make it public
