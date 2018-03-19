@@ -14,7 +14,7 @@ class LocalLibraryViewController: UIViewController {
     
     @IBOutlet weak var localLibraryTableView: UITableView!
     
-    var BooksArray: [PFObject] = []
+    var bookObjects: [PFObject] = []
     var titles = [String]()
     var authors = [String]()
     var coverPictures = [PFFile]()
@@ -30,9 +30,8 @@ class LocalLibraryViewController: UIViewController {
                 self.titles.append(book["name"] as! String)
                 self.authors.append(book["author"] as! String)
                 self.coverPictures.append(book["coverPicture"] as! PFFile)
-                //                self.globalLibraryTableView.reloadData()
             }
-            self.BooksArray = books
+            self.bookObjects = books
             self.localLibraryTableView.reloadData()
             }.catch { error in
                 // Error handling
@@ -55,7 +54,7 @@ class LocalLibraryViewController: UIViewController {
         if (segue.identifier == "sw_locallib_to_book")
         {
             let destVC = segue.destination as? BookInfoViewController
-            destVC?.currBook = self.BooksArray[localLibraryTableView.indexPathForSelectedRow!.row]
+            destVC?.currBook = self.bookObjects[localLibraryTableView.indexPathForSelectedRow!.row]
         }
      }
      
@@ -90,6 +89,28 @@ extension LocalLibraryViewController: UITableViewDataSource {
 extension LocalLibraryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "sw_locallib_to_book", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    // For enabling slide left deletions
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        Books().deleteBook(book: bookObjects[indexPath.row]).then { result in
+            if(result != true) {
+                print("Book Deletion Error")
+            }
+            else {
+                self.bookObjects.remove(at: indexPath.row)
+                self.titles.remove(at: indexPath.row)
+                self.authors.remove(at: indexPath.row)
+                self.coverPictures.remove(at: indexPath.row)
+                self.localLibraryTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            }
+        }.catch { error in
+            print("Book Deletion Error: \(error)")
+        }
     }
 }
 
