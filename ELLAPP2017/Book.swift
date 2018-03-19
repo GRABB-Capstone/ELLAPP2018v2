@@ -13,12 +13,10 @@ class Book
 {
     var title = ""
     var bookImage: UIImage
-    var vocabWords: [String]
     
-    init(title: String, bookImage: UIImage, vocab: [String]) {
+    init(title: String, bookImage: UIImage) {
         self.title = title
         self.bookImage = bookImage
-        self.vocabWords = vocab
     }
 
 }

@@ -187,6 +187,10 @@ class Books{
         })
     }
     
+    //
+    //
+    //
+    // Return Value: 
     func uploadBookToGlobal(book: PFObject) -> Promise<PFObject> {
         return Promise<PFObject>(in: .background, { resolve, reject, _ in
             // Copy the book and make it public
