@@ -12,6 +12,7 @@ import Hydra
 
 class LoginViewController: UIViewController {
     
+
     @IBOutlet weak var loginErrorLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -37,6 +38,7 @@ class LoginViewController: UIViewController {
             self.navigateToDashboard(userObj: userObj)
         }.catch { err in
             // TODO: Consider reimplementing pop-ups for errors and notifications
+            self.loginErrorLabel.isHidden = false
             self.loginErrorLabel.text = "Login failed. Try checking your password again"
             self.passwordTextField.text = ""
         }

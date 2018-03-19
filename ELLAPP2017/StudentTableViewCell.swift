@@ -1,17 +1,19 @@
 //
-//  ManageClassesTableViewCell.swift
+//  StudentTableViewCell.swift
 //  ELLAPP2017
 //
-//  Created by Nick Ponce on 1/18/18.
+//  Created by Grant Holstein on 3/15/18.
 //  Copyright © 2018 Ellokids. All rights reserved.
 //
 
 import UIKit
+import Parse
 
-class ManageClassesTableViewCell: UITableViewCell {
+class StudentTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var classNameLabel: UILabel!
-    @IBOutlet weak var gradeLevelLabel: UILabel!
+    
+    @IBOutlet weak var studentProfilePic: PFImageView!
+    @IBOutlet weak var studentNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

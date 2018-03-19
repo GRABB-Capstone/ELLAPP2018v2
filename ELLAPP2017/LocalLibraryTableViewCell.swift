@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Parse
 
 class LocalLibraryTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var localBookTitleLabel: UILabel!
+    @IBOutlet weak var localAuthorLabel: UILabel!
+    @IBOutlet weak var localCoverPictureImageView: PFImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
