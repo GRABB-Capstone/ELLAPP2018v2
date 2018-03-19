@@ -18,7 +18,7 @@ class StudentInfoViewController: UIViewController {
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var gradeLevel: UILabel!
     
-    var student: PFObject = PFObject(className: "_User")
+    var student: PFObject = PFObject(className: "User") // "_User"
     var englishLev = String()
     var gradeLev = String()
     

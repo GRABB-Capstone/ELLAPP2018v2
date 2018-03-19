@@ -226,21 +226,23 @@ class Classrooms{
             // Create the query
             let studentQuery = PFQuery(className: "ClassroomUserIntermediate")
             studentQuery.whereKey("classroom", equalTo: classroom)
+            studentQuery.whereKey("isTeacher", equalTo: false) // Temporary Fix to continue working -> plz fix Chris - NAP
             
             // Query it and fetch the results
             Database().queryIntermediate(query: studentQuery, key: "user").then(Database().fetchAll).then{ res in
-                var results = [PFObject]()
-                
-                for user in res {
-                    let user = user as! PFUser
-                    Users().getUserRoles(user: user).then { roles in
-                        if roles.contains("student") {
-                            results.append(user)
-                        }
-                    }
-                }
-                
-                resolve(results)
+//                var results = [PFObject]()
+//
+//                for user in res {
+//                    let user = user as! PFUser
+//                    Users().getUserRoles(user: user).then { roles in
+//                        if roles.contains("student") {
+//                            results.append(user)
+//                        }
+//                    }
+//                }
+//
+//                resolve(results)
+                resolve(res)
             }
         })
     }
