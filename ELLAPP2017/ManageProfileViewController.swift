@@ -16,10 +16,16 @@ class ManageProfileViewController: UIViewController {
     
 
     @IBOutlet weak var userImage: PFImageView!
+    var userImageFile = PFFile(data: Data())
     var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var userNameField: UILabel!
 
+    @IBOutlet weak var oldPassword: UITextField!
+    @IBOutlet weak var newPassword: UITextField!
+    @IBOutlet weak var confirmNewPassword: UITextField!
+    @IBOutlet weak var passwordMessage: UILabel!
+    
     
     
     
@@ -33,7 +39,15 @@ class ManageProfileViewController: UIViewController {
         
         
         userNameField.text = currentUser.username
-        //userImage.file = currentUser["ProfilePic"] as? PFFile
+        
+        userImageFile = currentUser["ProfilePic"] as? PFFile
+        userImageFile?.getDataInBackground(block: { (imageData: Data?, error: Error?) -> Void in
+            if error == nil {
+                self.userImage.image = UIImage(data: imageData!)
+            }
+            
+        })
+        
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
         userImage.clipsToBounds = true
         userImage.layer.borderWidth = 3
@@ -104,10 +118,25 @@ class ManageProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func editProfilePictureButton(_ sender: UIButton) {
-    }
     
     @IBAction func submitPasswordButton(_ sender: UIButton) {
+        if newPassword.text! == confirmNewPassword.text! {
+            Users().login(user: currentUser.username!, pass: oldPassword.text!).then { result in
+                Users().changePasswordOfCurrentUser(newPassword: self.newPassword.text!).then { result in
+                    self.passwordMessage.isHidden = false
+                    self.passwordMessage.text = "Password successfully changed"
+                }
+            }.catch { result in
+                self.passwordMessage.isHidden = false
+                  self.passwordMessage.text = "Incorrect password"
+            }
+        }
+        else{
+            self.passwordMessage.isHidden = false
+            self.passwordMessage.text = "Passwords don't match"
+        }
+        
+
     }
     
     /*
@@ -132,13 +161,21 @@ extension ManageProfileViewController:  UIImagePickerControllerDelegate, UINavig
          */
         if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         {
-            let dataImage = UIImagePNGRepresentation(editedImage) as Data?
-            if let pfEditedImageFile = PFFile(data: dataImage!)
+            let dataImage = UIImagePNGRepresentation(editedImage)
+            print(dataImage == nil)
+
+
+            
+            
+            //print("pixels: \(dataImage.)")
+            if let pfEditedImageFile = PFFile(name: "image.png", data: dataImage!)
             {
-                print("in the block")
-                self.userImage.file = pfEditedImageFile
+                currentUser["ProfilePic"] = pfEditedImageFile
+                Database().updateToDatabase(object: currentUser).then{result in
+                    print(result)
+                }
+                self.userImage.image = editedImage
             }
-            //self.userImage.image = editedImage
         }
         
         //Dismiss the UIImagePicker after selection
@@ -146,7 +183,7 @@ extension ManageProfileViewController:  UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("Cancelled")
+        picker.dismiss(animated: true, completion: nil)
     }
     
 }

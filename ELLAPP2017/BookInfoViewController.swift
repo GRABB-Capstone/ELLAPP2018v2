@@ -12,11 +12,15 @@ import Parse
 class BookInfoViewController: UIViewController {
 
     
-    var Book = PFObject(className: "Book")
-    
+    var currBook = PFObject(className: "Book")
+    var VocabArray: [PFObject] = []
+    @IBOutlet weak var vocabTableView: UITableView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
     @IBOutlet weak var bookLevel: UILabel!
+    var allWordsArray = [String]()
+    var allDefinitionsArray = [String]()
+    
     var author = String()
     var grade = String()
     
@@ -24,14 +28,22 @@ class BookInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        author = Book["author"] as! String
-        grade = Book["gradeLevel"] as! String
+        author = currBook["author"] as! String
+        grade = currBook["gradeLevel"] as! String
         
-        bookTitle.text! = Book["name"] as! String//make call for book title
+        bookTitle.text! = currBook["name"] as! String//make call for book title
         bookAuthor.text = "Author: \(author)"//make call for book author
         bookLevel.text = "Grade Level: \(grade)"//make call for book grade level
-        bookImage.file = Book["coverPicture"] as! PFFile!//make call for book image
+        bookImage.file = currBook["coverPicture"] as! PFFile!//make call for book image
         
+        Books().getVocabWords(book: currBook).then{vocabWords in
+            for currWord in vocabWords {
+                self.allWordsArray.append(currWord["name"] as! String)
+                self.allDefinitionsArray.append(currWord["definition"] as! String)
+            }
+            self.VocabArray = vocabWords
+            self.vocabTableView.reloadData()
+        }
         
         
         // Make image circular
@@ -58,4 +70,27 @@ class BookInfoViewController: UIViewController {
     }
     */
 
+}
+
+extension BookInfoViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print("allWordsArray count: \(allWordsArray.count)")
+        return allWordsArray.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = vocabTableView.dequeueReusableCell(withIdentifier: "book_vocab_cell", for: indexPath) as? VocabTableViewCell
+        
+        // Add cell initialization
+        cell?.vocabName.text = allWordsArray[indexPath.row]
+        cell?.vocabDefinition.text = allDefinitionsArray[indexPath.row]
+        
+        return cell!
+    }
+    
 }

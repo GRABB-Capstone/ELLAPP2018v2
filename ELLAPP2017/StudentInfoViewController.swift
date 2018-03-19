@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class StudentInfoViewController: UIViewController {
 
@@ -17,12 +18,18 @@ class StudentInfoViewController: UIViewController {
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var gradeLevel: UILabel!
     
+    var student: PFObject = PFObject(className: "_User")
+    var englishLev = String()
+    var gradeLev = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //englishLev = currStudent[""] as! String
+        //gradeLev = currStudent["username"] as! String
         // Do any additional setup after loading the view, typically from a nib.
-        //studentName.text = //make call for students name
-        //englishLevel.text = //make call for student's english level
-        //gradeLevel.text = //make call for student's grade level
+        //studentName.text = currStudent["username"] as! String//make call for students name
+        //englishLevel.text = currStudent["username"] as! String//make call for student's english level
+        //gradeLevel.text = currStudent["username"] as! String//make call for student's grade level
         //                  //make call for image of student
         
         

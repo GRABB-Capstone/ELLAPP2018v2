@@ -14,7 +14,7 @@ class GlobalLibraryViewController: UIViewController {
 
     @IBOutlet weak var globalLibraryTableView: UITableView!
     
-    var Books: [PFObject] = []
+    var BooksArray: [PFObject] = []
     var titles = [String]()
     var authors = [String]()
     var coverPictures = [PFFile]()
@@ -32,7 +32,7 @@ class GlobalLibraryViewController: UIViewController {
                 self.coverPictures.append(book["coverPicture"] as! PFFile)
 //                self.globalLibraryTableView.reloadData()
             }
-            self.Books = books
+            self.BooksArray = books
             self.globalLibraryTableView.reloadData()
         }.catch { error in
             // Error handling
@@ -54,7 +54,7 @@ class GlobalLibraryViewController: UIViewController {
         if (segue.identifier == "sw_global_to_book")
         {
             let destVC = segue.destination as? BookInfoViewController
-            destVC?.Book = self.Books[globalLibraryTableView.indexPathForSelectedRow!.row]
+            destVC?.currBook = self.BooksArray[globalLibraryTableView.indexPathForSelectedRow!.row]
         }
     }
 
