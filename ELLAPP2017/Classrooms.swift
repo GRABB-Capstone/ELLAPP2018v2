@@ -18,6 +18,7 @@ class Classrooms{
             let newClassroom = PFUser(className: "Classroom")
             newClassroom["name"] = name
             newClassroom["gradeLevel"] = gradeLevel
+            newClassroom["isActive"] = true
             
             // Add to the database
             Database().updateToDatabase(object: newClassroom).then{ result in
@@ -69,6 +70,7 @@ class Classrooms{
             // Create the query
             let bookQuery = PFQuery(className: "ClassroomBookIntermediate")
             bookQuery.whereKey("Classroom", equalTo: classroom)
+            bookQuery.whereKey("isActive", equalTo: true)
             
             // Query it and fetch the results
             Database().queryIntermediate(query: bookQuery, key: "Book").then(Database().fetchAll).then{ res in
@@ -84,6 +86,7 @@ class Classrooms{
             let intermediateQuery = PFQuery(className: "ClassroomBookIntermediate")
             intermediateQuery.whereKey("Classroom", equalTo: classroom)
             intermediateQuery.whereKey("Book", equalTo: book)
+            intermediateQuery.whereKey("isActive", equalTo: true)
             
             // Get the intermediate
             Database().getIntermediate(intermediateQuery: intermediateQuery).then{ intermediate in
@@ -91,6 +94,7 @@ class Classrooms{
                 // Create the second query
                 let gameQuery = PFQuery(className: "ClassroomBookGameIntermediate")
                 gameQuery.whereKey("ClassroomBookIntermediate", equalTo: intermediate)
+                gameQuery.whereKey("isActive", equalTo: true)
                 
                 // Query it and fetch the results
                 Database().queryIntermediate(query: gameQuery, key: "Game").then(Database().fetchAll).then{ res in
@@ -212,6 +216,7 @@ class Classrooms{
             // Create the query
             let classroomQuery = PFQuery(className: "ClassroomUserIntermediate")
             classroomQuery.whereKey("user", equalTo: user)
+            classroomQuery.whereKey("isActive", equalTo: true)
             
             // Query it and fetch the results
             Database().queryIntermediate(query: classroomQuery, key: "classroom").then(Database().fetchAll).then{ res in
@@ -226,21 +231,30 @@ class Classrooms{
             // Create the query
             let studentQuery = PFQuery(className: "ClassroomUserIntermediate")
             studentQuery.whereKey("classroom", equalTo: classroom)
+            studentQuery.whereKey("isActive", equalTo: true)
             
             // Query it and fetch the results
             Database().queryIntermediate(query: studentQuery, key: "user").then(Database().fetchAll).then{ res in
                 var results = [PFObject]()
+                var rolesChecked = 0
                 
                 for user in res {
                     let user = user as! PFUser
-                    Users().getUserRoles(user: user).then { roles in
-                        if roles.contains("student") {
-                            results.append(user)
+                    Users().getRoleFromName(role: "student").then { role in
+                        Users().doesUserBelongToRole(user: user, role: role).then { belongs in
+                            if belongs {
+                                results.append(user)
+                            }
+                            
+                            // If this is the last user to check, send back the result
+                            // TODO: It's likely this might need/want semaphores
+                            rolesChecked += 1
+                            if rolesChecked >= res.count {
+                                resolve(results)
+                            }
                         }
                     }
                 }
-                
-                resolve(results)
             }
         })
     }
@@ -249,23 +263,32 @@ class Classrooms{
     func getTeachersInClassroom(classroom: PFObject) -> Promise<[PFObject]> {
         return Promise<[PFObject]>(in: .background, { resolve, reject, _ in
             // Create the query
-            let studentQuery = PFQuery(className: "ClassroomUserIntermediate")
-            studentQuery.whereKey("classroom", equalTo: classroom)
+            let teacherQuery = PFQuery(className: "ClassroomUserIntermediate")
+            teacherQuery.whereKey("classroom", equalTo: classroom)
+            teacherQuery.whereKey("isActive", equalTo: true)
             
             // Query it and fetch the results
-            Database().queryIntermediate(query: studentQuery, key: "user").then(Database().fetchAll).then{ res in
+            Database().queryIntermediate(query: teacherQuery, key: "user").then(Database().fetchAll).then{ res in
                 var results = [PFObject]()
+                var rolesChecked = 0
                 
                 for user in res {
                     let user = user as! PFUser
-                    Users().getUserRoles(user: user).then { roles in
-                        if roles.contains("teacher") {
-                            results.append(user)
+                    Users().getRoleFromName(role: "teacher").then { role in
+                        Users().doesUserBelongToRole(user: user, role: role).then { belongs in
+                            if belongs {
+                                results.append(user)
+                            }
+                            
+                            // If this is the last user to check, send back the result
+                            // TODO: It's likely this might need/want semaphores
+                            rolesChecked += 1
+                            if rolesChecked >= res.count {
+                                resolve(results)
+                            }
                         }
                     }
                 }
-                
-                resolve(results)
             }
         })
     }
