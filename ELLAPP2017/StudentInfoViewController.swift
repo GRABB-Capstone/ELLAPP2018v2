@@ -13,31 +13,32 @@ class StudentInfoViewController: UIViewController {
 
 
     
-    @IBOutlet weak var studentPicture: UIImageView!
+
     @IBOutlet weak var englishLevel: UILabel!
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var gradeLevel: UILabel!
     
-    var student: PFObject = PFObject(className: "User") // "_User"
+    var currStudent: PFObject = PFObject(className: "User") // "_User"
     var englishLev = String()
     var gradeLev = String()
+    @IBOutlet weak var studentImage: PFImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //englishLev = currStudent[""] as! String
-        //gradeLev = currStudent["username"] as! String
-        // Do any additional setup after loading the view, typically from a nib.
-        //studentName.text = currStudent["username"] as! String//make call for students name
-        //englishLevel.text = currStudent["username"] as! String//make call for student's english level
-        //gradeLevel.text = currStudent["username"] as! String//make call for student's grade level
-        //                  //make call for image of student
+        englishLev = currStudent["englishLvl"] as! String
+        gradeLev = currStudent["gradeLvl"] as! String
+
+        studentName.text! = currStudent["username"] as! String//make call for students name
+        englishLevel.text = "English Level: \(englishLev)"//make call for student's english level
+        gradeLevel.text = "Grade: \(gradeLev)"//make call for student's grade level
+        studentImage.file = currStudent["ProfilePic"] as! PFFile!//make call for student image
         
         
         // Make image circular
-        studentPicture.layer.cornerRadius = studentPicture.frame.size.width / 2
-        studentPicture.clipsToBounds = true
-        studentPicture.layer.borderWidth = 3
-        studentPicture.layer.borderColor = UIColor.white.cgColor
+        studentImage.layer.cornerRadius = studentImage.frame.size.width / 2
+        studentImage.clipsToBounds = true
+        studentImage.layer.borderWidth = 3
+        studentImage.layer.borderColor = UIColor.white.cgColor
     }
 
     override func didReceiveMemoryWarning() {

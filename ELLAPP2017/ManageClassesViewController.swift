@@ -17,6 +17,7 @@ class ManageClassesViewController: UIViewController {
     @IBOutlet weak var classTableView: UITableView!
     @IBOutlet weak var studentTableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +69,7 @@ class ManageClassesViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if(segue.identifier == "sw_manage_to_student") {
             let destVC = segue.destination as? StudentInfoViewController
-            destVC?.student = self.students[self.studentTableView.indexPathForSelectedRow!.row]
+            destVC?.currStudent = self.students[self.studentTableView.indexPathForSelectedRow!.row]
         }
      }
 }
