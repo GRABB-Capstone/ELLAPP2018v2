@@ -22,8 +22,9 @@ class LocalLibraryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
+
         // Get all book objects and extract their data into arrays
         Books().getLocalBooks(teacher: PFUser.current()!).then{ books in
             for book in books {
@@ -42,8 +43,6 @@ class LocalLibraryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
      // MARK: - Navigation
      
