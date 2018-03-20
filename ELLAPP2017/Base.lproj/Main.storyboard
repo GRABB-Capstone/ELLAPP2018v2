@@ -50,7 +50,7 @@
                                     <action selector="manageClassroomButton:" destination="Pgh-46-Nhw" eventType="touchUpInside" id="Oub-vx-jbI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-vn-KS1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-vn-KS1">
                                 <rect key="frame" x="202" y="481" width="430" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="430" id="S0I-Xg-Zeb"/>
@@ -525,7 +525,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nba-ir-Jmm">
                                 <rect key="frame" x="0.0" y="448" width="834" height="664"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.71138769390000001" green="0.87551975250000003" blue="0.98825544119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="book_vocab_cell" rowHeight="115" id="mLT-Q3-SAG" customClass="VocabTableViewCell" customModule="ELLAPP2017" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="834" height="115"/>

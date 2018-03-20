@@ -13,8 +13,6 @@ class ManageProfileViewController: UIViewController {
 
     var currentUser = PFUser.current()!
 
-    
-
     @IBOutlet weak var userImage: PFImageView!
     var userImageFile = PFFile(data: Data())
     var imagePicker = UIImagePickerController()
@@ -26,18 +24,10 @@ class ManageProfileViewController: UIViewController {
     @IBOutlet weak var confirmNewPassword: UITextField!
     @IBOutlet weak var passwordMessage: UILabel!
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        
-        
-        
-        
-        
+
         userNameField.text = currentUser.username
         
         userImageFile = currentUser["ProfilePic"] as? PFFile
@@ -52,8 +42,6 @@ class ManageProfileViewController: UIViewController {
         userImage.clipsToBounds = true
         userImage.layer.borderWidth = 3
         userImage.layer.borderColor = UIColor.white.cgColor
-        // Do any additional setup after loading the view.
-        
     }
 
     @IBAction func buttonChooseImageOnClick(_ sender: UIButton) {
@@ -108,10 +96,6 @@ class ManageProfileViewController: UIViewController {
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
     }
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -186,4 +170,11 @@ extension ManageProfileViewController:  UIImagePickerControllerDelegate, UINavig
         picker.dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension ManageProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
