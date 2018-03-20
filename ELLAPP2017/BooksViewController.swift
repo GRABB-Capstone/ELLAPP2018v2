@@ -16,7 +16,9 @@ class BooksViewController: UIViewController {
     
     /* Array of pulled books */
     var books = [Book]()
+    var bookArray = [PFObject]()
     let bookScale: CGFloat = 0.6
+    var vocab = [String]()
     
     var username = String()
     
@@ -43,29 +45,28 @@ class BooksViewController: UIViewController {
         booksCollectionView.allowsSelection = true
         
         /* TODO: Look into "UICollectionView's two prefetching techniques" */
-        let booksQuery = PFQuery(className: "Book")
-        
-        /* Asynchronous call to the database for book data pertaining to the user */
-        booksQuery.findObjectsInBackground { (objects, error) -> Void in
-            if let objects = objects {
-                for book in objects {
-                    /* Get what you need from each book */
-                    let title = book["name"] as! String
-                    let cover = book["coverPicture"] as! PFFile
-                    //let vocab = book["vocab"] as! [String]
-                    let vocab = [String]()
-
-                    /* Get the image from the PFFile */
-                    cover.getDataInBackground({ (data, error) -> Void in
-                        if let coverImage = UIImage(data: data!) {
-                            /* Add the new books to the array and reload the data in the collection view */
-                            self.books.append(Book(title: title, bookImage: coverImage, vocab: vocab))
-                            self.booksCollectionView.reloadData()
-                        }
-                        else {
-                            print("There was an image error: \(error.debugDescription)")
-                        }
-                    })
+        Classrooms().getClassrooms(user: PFUser.current()!).then { classrooms in
+            for classroom in classrooms {
+                Classrooms().getBooksInClassroom(classroom: classroom).then { result in
+                    for book in result {
+                        /* Get what you need from each book */
+                        let title = book["name"] as! String
+                        let cover = book["coverPicture"] as! PFFile
+                        //let vocab = book["vocab"] as! [String]
+                        
+                        /* Get the image from the PFFile */
+                        cover.getDataInBackground({ (data, error) -> Void in
+                            if let coverImage = UIImage(data: data!) {
+                                /* Add the new books to the array and reload the data in the collection view */
+                                self.books.append(Book(title: title, bookImage: coverImage))
+                                self.bookArray.append(book)
+                                self.booksCollectionView.reloadData()
+                            }
+                            else {
+                                print("There was an image error: \(error.debugDescription)")
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -91,7 +92,7 @@ class BooksViewController: UIViewController {
             
             print("Selected item number: \(selectedIndexPath.item) and book count: \(self.books.count)")
 //            destVC?.words.append(self.books[selectedIndexPath.item].title)
-            destVC?.words = self.books[selectedIndexPath.item].vocabWords
+            destVC?.words = self.vocab
         }
     }
 }
@@ -121,7 +122,14 @@ extension BooksViewController: UICollectionViewDelegate
 {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected an item and it registered in the delegate function")
-        performSegue(withIdentifier: "sw_doodle", sender: nil)
+        
+        let selectedBook = bookArray[indexPath.item]
+        Books().getVocabWords(book: selectedBook).then { vocabs in
+            for myVocab in vocabs {
+                self.vocab.append(myVocab["name"] as! String)
+            }
+            self.performSegue(withIdentifier: "sw_doodle", sender: nil)
+        }
     }
 }
 
