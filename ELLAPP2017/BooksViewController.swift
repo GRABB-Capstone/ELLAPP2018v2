@@ -123,6 +123,9 @@ extension BooksViewController: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected an item and it registered in the delegate function")
         
+        // Empty vocab words from previous games
+        vocab.removeAll()
+        
         let selectedBook = bookArray[indexPath.item]
         Books().getVocabWords(book: selectedBook).then { vocabs in
             for myVocab in vocabs {
