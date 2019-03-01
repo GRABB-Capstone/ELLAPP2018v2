@@ -64,6 +64,7 @@ class DoodleGameViewController: UIViewController {
         startInt = 3
         button.setTitle(String(startInt), for: .normal)
         button.isEnabled = false
+        let timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
         
         startTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DoodleGameViewController.startGame), userInfo: nil, repeats: true)
         // edits from 01 / 29
@@ -241,6 +242,25 @@ class DoodleGameViewController: UIViewController {
             button.isEnabled = false
         }
     }
+    
+    @objc func timeToMoveOn() {
+        self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
+    }
     // edits from 01/ 29
     
+    // edits 02 / 13
+    // attempting to take screenshot of drawing
+    @IBAction func takeshot(_ sender: Any) {
+        var image :UIImage?
+        let currentLayer = UIApplication.shared.keyWindow!.layer
+        let currentScale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(currentLayer.frame.size, false, currentScale);
+        guard let currentContext = UIGraphicsGetCurrentContext() else {return}
+        currentLayer.render(in: currentContext)
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        guard let img = image else { return }
+        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)    }
+
 }
+
