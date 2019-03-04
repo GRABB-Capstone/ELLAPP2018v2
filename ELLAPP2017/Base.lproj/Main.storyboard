@@ -338,7 +338,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class Name:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L07-7T-FgA">
-                                                    <rect key="frame" x="129" y="-7" width="690" height="20"/>
+                                                    <rect key="frame" x="129" y="-7" width="690" height="22.5"/>
                                                     <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -797,7 +797,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqe-7R-Kss">
-                                <rect key="frame" x="188" y="297" width="176.5" height="89"/>
+                                <rect key="frame" x="188" y="297" width="149" height="89"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="89" id="rWf-WF-lue"/>
                                 </constraints>
@@ -974,7 +974,7 @@
         <!--Guess Doodle View Controller-->
         <scene sceneID="9KN-Bl-xR8">
             <objects>
-                <viewController id="Cta-Le-gbH" customClass="GuessDoodleViewController" sceneMemberID="viewController">
+                <viewController id="Cta-Le-gbH" customClass="GuessDoodleViewController" customModule="ELLAPP2017" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mBP-WB-i5M">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -986,24 +986,39 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your answer here!" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEA-G9-UZf">
-                                <rect key="frame" x="205" y="743" width="422" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your answer here!" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hEA-G9-UZf">
+                                <rect key="frame" x="109" y="727" width="614" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2H-zk-YbR">
+                                <rect key="frame" x="336" y="796" width="188" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRZ-fA-6vi">
+                                <rect key="frame" x="336" y="850" width="188" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.52008117310000002" green="0.83884854809999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="5QB-cD-ylD"/>
                     </view>
                     <connections>
-                        <segue destination="i7G-6p-txt" kind="presentation" identifier="postGuessScene" id="9Gr-iv-9zN"/>
+                        <outlet property="timeLeftLabel" destination="yRZ-fA-6vi" id="1Jx-ab-4wZ"/>
+                        <segue destination="i7G-6p-txt" kind="show" identifier="guessToScore" id="JPj-B6-JFv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHW-Ap-CB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3604" y="50"/>
+            <point key="canvasLocation" x="3603.5971223021584" y="49.640287769784173"/>
         </scene>
         <!--Player Scores View Controller-->
         <scene sceneID="gc7-NZ-BAL">
@@ -1102,6 +1117,7 @@
                         <color key="backgroundColor" red="0.52008117310000002" green="0.83884854809999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="0hU-5w-ceN"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OJD-I1-DzC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHg-mX-HKh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1398,7 +1414,7 @@
                     <navigationItem key="navigationItem" id="0cP-Mm-tA5"/>
                     <connections>
                         <outlet property="waitLabel" destination="tXL-jo-61a" id="KB7-hw-FY5"/>
-                        <segue destination="Cta-Le-gbH" kind="presentation" identifier="guessDrawing" id="WRu-Ks-pbA"/>
+                        <segue destination="Cta-Le-gbH" kind="show" identifier="guessDrawing" id="WRu-Ks-pbA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ky-CL-Lxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1424,7 +1440,7 @@
         <image name="lightturq" width="504" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="41V-Le-X4p"/>
+        <segue reference="Uc9-Sx-XXH"/>
         <segue reference="OS8-lF-M2u"/>
     </inferredMetricsTieBreakers>
 </document>
