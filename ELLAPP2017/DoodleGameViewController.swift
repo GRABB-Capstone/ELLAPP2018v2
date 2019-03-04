@@ -243,6 +243,7 @@ class DoodleGameViewController: UIViewController {
         }
     }
     
+    // Will segue to next screen
     @objc func timeToMoveOn() {
         self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
     }
