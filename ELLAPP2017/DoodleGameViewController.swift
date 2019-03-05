@@ -81,7 +81,6 @@ class DoodleGameViewController: UIViewController {
         mainImageView.image = rect
         // end 3/2
         
-        
         // edits from 01 / 29
         gameInt = 30
         timeLabel.text = String(gameInt)
@@ -92,7 +91,7 @@ class DoodleGameViewController: UIViewController {
         // start 3/4
         timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
         // end 3/4
-        
+
         startTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DoodleGameViewController.startGame), userInfo: nil, repeats: true)
         // edits from 01 / 29
         
@@ -278,6 +277,7 @@ class DoodleGameViewController: UIViewController {
     // edits from 01/ 29
     
     // start 3/2
+    // attempting to take screenshot of drawing
     @IBAction func takeshot(_ sender: Any) {
         var image :UIImage?
         let currentLayer = UIApplication.shared.keyWindow!.layer
