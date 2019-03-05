@@ -277,8 +277,8 @@ class DoodleGameViewController: UIViewController {
     // edits from 01/ 29
     
     // start 3/2
-    // attempting to take screenshot of drawing
-    @IBAction func takeshot(_ sender: Any) {
+    // take screenshot of drawing
+    func takeshot(_ sender: Any) {
         var image :UIImage?
         let currentLayer = UIApplication.shared.keyWindow!.layer
         let currentScale = UIScreen.main.scale
