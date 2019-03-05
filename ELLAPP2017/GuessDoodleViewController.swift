@@ -1,15 +1,13 @@
 //
 //  GuessDoodleViewController.swift
 //
-//
 //  Created by Andy Tran Nguyen on 3/1/19.
 //
 
 import UIKit
 
 class GuessDoodleViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var timeLeftLabel: UILabel!
     
     // take user input in textfield
@@ -18,8 +16,6 @@ class GuessDoodleViewController: UIViewController {
     // will display if user input is correct
     @IBOutlet weak var submissionCheck: UILabel!
     
-    
-
     var guessTimer = 20
     var guessTime = Timer()
     
@@ -78,4 +74,5 @@ class GuessDoodleViewController: UIViewController {
      }
      */
     
+
 }

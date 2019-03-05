@@ -12,6 +12,7 @@ class PostSubmitTestViewController: UIViewController {
     
     @IBOutlet weak var waitLabel: UILabel!
     
+
     var waitInt = 5
     var waitTimer = Timer()
 
