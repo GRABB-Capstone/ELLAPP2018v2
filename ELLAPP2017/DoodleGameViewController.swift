@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 class DoodleGameViewController: UIViewController {
+    
+    // start 3/1
+    var currentUser = PFUser.current()!
+    // end 3/1
 
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var tempImageView: UIImageView!
@@ -37,6 +42,10 @@ class DoodleGameViewController: UIViewController {
     var startTimer = Timer()
     //edits from 01 / 29
     
+    // start 3/4
+    var timer = Timer()
+    // end 3/4
+    
     let colors: [(CGFloat, CGFloat, CGFloat)] = [
         (0, 0, 0),
         (105.0 / 255.0, 105.0 / 255.0, 105.0 / 255.0),
@@ -58,20 +67,38 @@ class DoodleGameViewController: UIViewController {
         // GRABB's pop-up is not supported by the Ellokids - NAP
 //        let _ = SCLAlertView().showInfo("Word Doodle", subTitle: "Illustrate the meaning of the word. Click next to draw the next word!")
 //
+        // start 3/2
+        // draw transparent rectangle for drawing area
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 834, height: 1112))
+        let rect = renderer.image { ctx in
+            let rectangle = CGRect(x: 50, y: 250, width: 735, height: 660)
+            ctx.cgContext.setFillColor(UIColor.clear.cgColor)
+            ctx.cgContext.setStrokeColor(UIColor.black.cgColor)
+            ctx.cgContext.setLineWidth(5)
+            ctx.cgContext.addRect(rectangle)
+            ctx.cgContext.drawPath(using: .fillStroke)
+        }
+        mainImageView.image = rect
+        // end 3/2
+        
         // edits from 01 / 29
         gameInt = 30
         timeLabel.text = String(gameInt)
         startInt = 3
         button.setTitle(String(startInt), for: .normal)
         button.isEnabled = false
-        let timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
         
+        // start 3/4
+        timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
+        // end 3/4
+
         startTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DoodleGameViewController.startGame), userInfo: nil, repeats: true)
         // edits from 01 / 29
         
         if (words.count > 0) {
             currentWord = Int(arc4random_uniform(UInt32(words.count)))
             vocabLabel.text = words[currentWord]
+            print("vocab word ", vocabLabel.text!)
         }
     }
     
@@ -244,11 +271,12 @@ class DoodleGameViewController: UIViewController {
     }
     
     @objc func timeToMoveOn() {
+        takeshot(self)
         self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
     }
     // edits from 01/ 29
     
-    // edits 02 / 13
+    // start 3/2
     // attempting to take screenshot of drawing
     @IBAction func takeshot(_ sender: Any) {
         var image :UIImage?
@@ -260,7 +288,55 @@ class DoodleGameViewController: UIViewController {
         image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         guard let img = image else { return }
-        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)    }
-
+        
+        let cropped : UIImage = cropImage(image: img)
+        
+//        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+//        UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil)
+        
+        // update drawing and vocab word in user's pictionary player
+        let player = currentUser["PictionaryPlayer"] as? PFObject
+        let dataImage = UIImagePNGRepresentation(cropped)
+        if let drawingImageFile = PFFile(name: "drawing.png", data: dataImage!)
+        {
+            player?["Drawing"] = drawingImageFile
+            player?["VocabWord"] = vocabLabel.text
+            Database().updateToDatabase(object: currentUser).then{result in
+                print(result)
+            }
+        }
+    }
+    
+    func cropImage(image: UIImage) -> UIImage {
+        let cgimage = image.cgImage!
+        let contextImage: UIImage = UIImage(cgImage: cgimage)
+        let contextSize: CGSize = contextImage.size
+        
+        let posX: CGFloat = 93.0
+        let posY: CGFloat = 500.0
+        
+        let cgwidth: CGFloat = CGFloat(contextSize.width - 2*posX)
+        let cgheight: CGFloat = CGFloat(contextSize.height - 900)
+        
+        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        
+        // Create bitmap image from context using the rect
+        let imageRef: CGImage = cgimage.cropping(to: rect)!
+        
+        // Create a new image based on the imageRef and rotate back to the original orientation
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        
+        return image
+    }
+    
+    @IBAction func submitButton(_ sender: Any) {
+        timer.invalidate()
+        print("click submit")
+        takeshot(self)
+        print("after takeshot")
+        self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
+    }
+    
+    // end 3/2
 }
 

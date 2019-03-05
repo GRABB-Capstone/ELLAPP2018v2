@@ -797,7 +797,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqe-7R-Kss">
-                                <rect key="frame" x="188" y="297" width="176.5" height="89"/>
+                                <rect key="frame" x="188" y="297" width="149" height="89"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="89" id="rWf-WF-lue"/>
                                 </constraints>
@@ -1302,7 +1302,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elV-ht-Cn3">
-                                <rect key="frame" x="139" y="679" width="653" height="153"/>
+                                <rect key="frame" x="20" y="174" width="662" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="READY">
@@ -1312,14 +1312,14 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCS-dx-65R">
                                 <rect key="frame" x="661" y="84" width="153" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.20229483123207093" green="1" blue="0.11661632551150292" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.0" green="0.79839297279792742" blue="0.0013480142214523964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="1" green="0.99295660281713916" blue="0.89590926066523391" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="SubmitScreen:" destination="joD-df-NM3" eventType="touchUpInside" id="Tqv-Cz-SMU"/>
-                                    <segue destination="UPG-Ru-wej" kind="show" id="Uc9-Sx-XXH"/>
+                                    <action selector="submitButton:" destination="OR3-2d-FFI" eventType="touchUpInside" id="jsT-wh-AeL"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time left:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1K-ss-t25">
@@ -1330,8 +1330,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82B-8p-b6R">
-                                <rect key="frame" x="57" y="241" width="30" height="30"/>
+                                <rect key="frame" x="36" y="84" width="86" height="63"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="test"/>
                                 <connections>
                                     <action selector="takeshot:" destination="OR3-2d-FFI" eventType="touchUpInside" id="X1z-Aw-Ba7"/>
@@ -1424,7 +1425,6 @@
         <image name="lightturq" width="504" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="41V-Le-X4p"/>
         <segue reference="OS8-lF-M2u"/>
     </inferredMetricsTieBreakers>
 </document>
