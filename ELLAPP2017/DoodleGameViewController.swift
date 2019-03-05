@@ -14,6 +14,11 @@ class DoodleGameViewController: UIViewController {
     @IBOutlet weak var tempImageView: UIImageView!
     @IBOutlet weak var vocabLabel: UILabel!
     
+    // edits from 01 / 29
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var button: UIButton!
+    // edits from 01 / 29
+    
     var words = [String]()
     var currentWord = 0
     
@@ -24,6 +29,13 @@ class DoodleGameViewController: UIViewController {
     var brushWidth: CGFloat = 10.0
     var opacity: CGFloat = 1.0
     var swiped = false
+    
+    // edits from 01 / 29
+    var gameInt = 30
+    var startInt = 3
+    var gameTimer = Timer()
+    var startTimer = Timer()
+    //edits from 01 / 29
     
     let colors: [(CGFloat, CGFloat, CGFloat)] = [
         (0, 0, 0),
@@ -46,7 +58,19 @@ class DoodleGameViewController: UIViewController {
         // GRABB's pop-up is not supported by the Ellokids - NAP
 //        let _ = SCLAlertView().showInfo("Word Doodle", subTitle: "Illustrate the meaning of the word. Click next to draw the next word!")
 //
+        // edits from 01 / 29
+        gameInt = 30
+        timeLabel.text = String(gameInt)
+        startInt = 3
+        button.setTitle(String(startInt), for: .normal)
+        button.isEnabled = false
+        let timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
+        
+        startTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DoodleGameViewController.startGame), userInfo: nil, repeats: true)
+        // edits from 01 / 29
+        
         if (words.count > 0) {
+            currentWord = Int(arc4random_uniform(UInt32(words.count)))
             vocabLabel.text = words[currentWord]
         }
     }
@@ -191,4 +215,53 @@ class DoodleGameViewController: UIViewController {
      }
      }*/
     
+    //edits from 01 / 29
+    @objc func startGame()
+    {
+        startInt -= 1
+        button.setTitle(String(startInt), for: .normal)
+        
+        if startInt == 0
+        {
+            startTimer.invalidate()
+            button.setTitle("GO go go, DRAW before time runs out!!", for: .normal)
+            button.isEnabled = true
+            
+            gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(DoodleGameViewController.game), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func game()
+    {
+        gameInt -= 1
+        timeLabel.text = String(gameInt)
+        
+        if gameInt == 0
+        {
+            gameTimer.invalidate()
+            button.isEnabled = false
+        }
+    }
+    
+    // Will segue to next screen
+    @objc func timeToMoveOn() {
+        self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
+    }
+    // edits from 01/ 29
+    
+    // edits 02 / 13
+    // attempting to take screenshot of drawing
+    @IBAction func takeshot(_ sender: Any) {
+        var image :UIImage?
+        let currentLayer = UIApplication.shared.keyWindow!.layer
+        let currentScale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(currentLayer.frame.size, false, currentScale);
+        guard let currentContext = UIGraphicsGetCurrentContext() else {return}
+        currentLayer.render(in: currentContext)
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        guard let img = image else { return }
+        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)    }
+
 }
+

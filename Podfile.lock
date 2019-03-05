@@ -13,6 +13,12 @@ DEPENDENCIES:
   - Parse
   - Parse/UI
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bolts
+    - HydraAsync
+    - Parse
+
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
@@ -20,4 +26,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d691096adac583a8ee1df234226322f6816436db
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
