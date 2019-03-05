@@ -12,8 +12,7 @@ class PostSubmitTestViewController: UIViewController {
     
     @IBOutlet weak var waitLabel: UILabel!
     
-
-    var waitInt = 5
+    var waitInt = 30
     var waitTimer = Timer()
 
     override func viewDidLoad() {
@@ -23,13 +22,13 @@ class PostSubmitTestViewController: UIViewController {
 //        waitTimer = Timer.init(timeInterval: 1, target: self, selector: #selector(PostSubmitTestViewController.waitCount), userInfo: nil, repeats: true)
         waitTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PostSubmitTestViewController.waitCount), userInfo: nil, repeats: true)
         
-        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
+        let timerUntilGuessScene = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
     }
     
     @objc func waitCount()
     {
         waitInt -= 1
-        waitLabel.text = "\(waitInt) seconds left"
+        waitLabel.text = String(waitInt)
         if (waitInt == 0)
         {
             waitTimer.invalidate()

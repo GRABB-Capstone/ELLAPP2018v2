@@ -46,7 +46,6 @@ class DoodleGameViewController: UIViewController {
     var timer = Timer()
     // end 3/4
     
-
     let colors: [(CGFloat, CGFloat, CGFloat)] = [
         (0, 0, 0),
         (105.0 / 255.0, 105.0 / 255.0, 105.0 / 255.0),
@@ -68,7 +67,6 @@ class DoodleGameViewController: UIViewController {
         // GRABB's pop-up is not supported by the Ellokids - NAP
 //        let _ = SCLAlertView().showInfo("Word Doodle", subTitle: "Illustrate the meaning of the word. Click next to draw the next word!")
 //
-
         // start 3/2
         // draw transparent rectangle for drawing area
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: 834, height: 1112))
@@ -83,16 +81,12 @@ class DoodleGameViewController: UIViewController {
         mainImageView.image = rect
         // end 3/2
         
-
         // edits from 01 / 29
         gameInt = 30
         timeLabel.text = String(gameInt)
         startInt = 3
         button.setTitle(String(startInt), for: .normal)
         button.isEnabled = false
-
-        let timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
-    
         
         // start 3/4
         timer = Timer.scheduledTimer(timeInterval: 34.0, target: self, selector: #selector(timeToMoveOn), userInfo: nil, repeats: false)
@@ -276,15 +270,12 @@ class DoodleGameViewController: UIViewController {
         }
     }
     
-    // Will segue to next screen
     @objc func timeToMoveOn() {
         takeshot(self)
-
         self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
     }
     // edits from 01/ 29
-
-
+    
     // start 3/2
     // take screenshot of drawing
     func takeshot(_ sender: Any) {
@@ -346,5 +337,6 @@ class DoodleGameViewController: UIViewController {
         self.performSegue(withIdentifier: "PostSubmitScreen", sender: self)
     }
     
+    // end 3/2
 }
 
