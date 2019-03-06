@@ -974,8 +974,7 @@
         <!--Guess Doodle View Controller-->
         <scene sceneID="9KN-Bl-xR8">
             <objects>
-                <viewController id="Cta-Le-gbH" customClass="GuessDoodleViewController" customModule="ELLAPP2017" customModuleProvider="target" sceneMemberID="viewController">
-                //<viewController id="Cta-Le-gbH" customClass="GuessDoodleViewController" sceneMemberID="viewController">
+                <viewController id="Cta-Le-gbH" customClass="GuessDoodleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mBP-WB-i5M">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -987,62 +986,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your answer here!" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="hEA-G9-UZf">
-                                <rect key="frame" x="109" y="727" width="614" height="30"/>
-                            //<textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your answer here!" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEA-G9-UZf">
-                            //    <rect key="frame" x="205" y="743" width="422" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your answer here!" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hEA-G9-UZf">
+                                <rect key="frame" x="205" y="743" width="422" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Remaining:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2H-zk-YbR">
-                                <rect key="frame" x="257" y="793" width="154" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="correct / incorrect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsC-ML-YUj">
-                                <rect key="frame" x="345" y="765" width="145" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sh7-aj-SfE">
-                                <rect key="frame" x="731" y="727" width="50" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.2022948312" green="1" blue="0.11661632550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="14"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="checkPlayerSubmission:" destination="Cta-Le-gbH" eventType="touchUpInside" id="MW0-sG-fz4"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRZ-fA-6vi">
-                                <rect key="frame" x="412" y="772" width="188" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KGMissKindergarten" family="KG Miss Kindergarten" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.52008117310000002" green="0.83884854809999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="5QB-cD-ylD"/>
                     </view>
                     <connections>
-                        <outlet property="playerInput" destination="hEA-G9-UZf" id="kpB-xS-w7i"/>
-                        <outlet property="submissionCheck" destination="IsC-ML-YUj" id="tY7-r2-Mgt"/>
-                        <outlet property="timeLeftLabel" destination="yRZ-fA-6vi" id="1Jx-ab-4wZ"/>
-                        <segue destination="i7G-6p-txt" kind="show" identifier="guessToScore" id="JPj-B6-JFv"/>
-                        //<segue destination="i7G-6p-txt" kind="presentation" identifier="postGuessScene" id="9Gr-iv-9zN"/>
+                        <segue destination="i7G-6p-txt" kind="presentation" identifier="postGuessScene" id="9Gr-iv-9zN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHW-Ap-CB8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3603.5971223021584" y="49.640287769784173"/>
-            //<point key="canvasLocation" x="3604" y="50"/>
+            <point key="canvasLocation" x="3604" y="50"/>
         </scene>
         <!--Player Scores View Controller-->
         <scene sceneID="gc7-NZ-BAL">
@@ -1141,7 +1102,6 @@
                         <color key="backgroundColor" red="0.52008117310000002" green="0.83884854809999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="0hU-5w-ceN"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OJD-I1-DzC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHg-mX-HKh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1342,7 +1302,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elV-ht-Cn3">
-                                //<rect key="frame" x="139" y="679" width="653" height="153"/>
                                 <rect key="frame" x="20" y="174" width="662" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -1353,7 +1312,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCS-dx-65R">
                                 <rect key="frame" x="661" y="84" width="153" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                               // <color key="backgroundColor" red="0.20229483123207093" green="1" blue="0.11661632551150292" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="backgroundColor" red="0.0" green="0.79839297279792742" blue="0.0013480142214523964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <state key="normal" title="Submit">
@@ -1361,7 +1319,6 @@
                                 </state>
                                 <connections>
                                     <action selector="SubmitScreen:" destination="joD-df-NM3" eventType="touchUpInside" id="Tqv-Cz-SMU"/>
-                                   // <segue destination="UPG-Ru-wej" kind="show" id="Uc9-Sx-XXH"/>
                                     <action selector="submitButton:" destination="OR3-2d-FFI" eventType="touchUpInside" id="jsT-wh-AeL"/>
                                 </connections>
                             </button>
@@ -1372,14 +1329,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82B-8p-b6R">
-                                <rect key="frame" x="57" y="241" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="test"/>
-                                <connections>
-                                    <action selector="takeshot:" destination="OR3-2d-FFI" eventType="touchUpInside" id="X1z-Aw-Ba7"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="pr5-r2-1Q0"/>
@@ -1441,8 +1390,7 @@
                     <navigationItem key="navigationItem" id="0cP-Mm-tA5"/>
                     <connections>
                         <outlet property="waitLabel" destination="tXL-jo-61a" id="KB7-hw-FY5"/>
-                        <segue destination="Cta-Le-gbH" kind="show" identifier="guessDrawing" id="WRu-Ks-pbA"/>
-                        //<segue destination="Cta-Le-gbH" kind="presentation" identifier="guessDrawing" id="WRu-Ks-pbA"/>
+                        <segue destination="Cta-Le-gbH" kind="presentation" identifier="guessDrawing" id="WRu-Ks-pbA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ky-CL-Lxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1468,7 +1416,6 @@
         <image name="lightturq" width="504" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uc9-Sx-XXH"/>
         <segue reference="OS8-lF-M2u"/>
     </inferredMetricsTieBreakers>
 </document>
