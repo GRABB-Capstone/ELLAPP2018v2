@@ -294,13 +294,12 @@ class DoodleGameViewController: UIViewController {
 //        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
 //        UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil)
         
-        // update drawing and vocab word in user's pictionary player
-        let player = currentUser["PictionaryPlayer"] as? PFObject
+        // update drawing and vocab word in user
         let dataImage = UIImagePNGRepresentation(cropped)
         if let drawingImageFile = PFFile(name: "drawing.png", data: dataImage!)
         {
-            player?["Drawing"] = drawingImageFile
-            player?["VocabWord"] = vocabLabel.text
+            currentUser["Drawing"] = drawingImageFile
+            currentUser["VocabWord"] = vocabLabel.text
             Database().updateToDatabase(object: currentUser).then{result in
                 print(result)
             }
